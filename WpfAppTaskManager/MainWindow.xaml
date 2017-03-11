@@ -1,0 +1,42 @@
+﻿<Window x:Class="WpfAppTaskManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppTaskManager"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="600" Icon="Images/task-manager-icon.ico" Closing="MainWindow_OnClosing">
+    <Grid Margin="2,2,2,2">
+        <Grid.RowDefinitions>
+            <RowDefinition MaxHeight="25"/>
+            <RowDefinition />
+            <RowDefinition MaxHeight="25"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Menu>
+                <MenuItem Name="MenuItemFile" Height="25" Header="File">
+                    <MenuItem Name="MenuItemStartNewTask" Header="Start new Task" Click="MenuItemStartNewTask_OnClick"/>
+                    <MenuItem Name="MenuItemToNotifyIcon" Header="To NotifyIcon" Click="MenuItemToNotify_OnClick"/>
+                </MenuItem>
+                <MenuItem Name="MenuItemSettings" Height="25" Header="Settings">
+                    <MenuItem Name="MenuItemListOfBanned" Header="Show list of banned processes" Click="MenuItemListOfBanned_OnClick"/>
+                </MenuItem>
+                <MenuItem Name="MenuItemHelp" Header="Help" Click="MenuItemHelp_OnClick"/>
+            </Menu>
+        </StackPanel>
+        <ListView Name="ListViewMain" Grid.Row="1">
+            <ListView.View>
+                <GridView/>
+            </ListView.View>
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Name="MenuItemEndProcess" Header="End Current Process" Click="ButtonKillProcess_OnClick"/>
+                    <MenuItem Name="MenuItemAddToBannedProcesses" Header="Set as Banned Process" Click="MenuItemAddToBannedProcesses_OnClick"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+        </ListView>
+        <Button Grid.Row="2" Name="ButtonKillProcess" Content="End Task" MaxHeight="25" Width="100" HorizontalAlignment="Right" Margin="2,2,20,0" Click="ButtonKillProcess_OnClick"/>
+        <TextBlock Grid.Row="2" Name="TextBlockAmountofProcesses" HorizontalAlignment="Left" Text="Amount of processes: " VerticalAlignment="Center" Margin="5,0,0,0"/>
+        <TextBlock Grid.Row="2" Name="TextBlockProcessesCounter" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="130,0,0,0"/>
+    </Grid>
+</Window>
